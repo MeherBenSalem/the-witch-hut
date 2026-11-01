@@ -1,0 +1,82 @@
+// Witchbound (mod id better_witch_huts). Changes apply after a restart.
+// Biomes, spacing and loot are datapack data: see the README.
+{
+  // slots: how many pacts a player may hold at each Coven Standing tier (a pact already
+  // struck is kept if the standing drops). renounce_cost: emeralds a resident asks to undo a pact.
+  // disabled: pact ids that are never offered, e.g. ["undying", "leech"]. Ids: leech, night_hunter,
+  // toad, stoneskin, hare, magpie, witchfire, moth, wolf, briar, raven, undying.
+  "pacts": {
+    "slots": {
+      "hunted": 0,
+      "distrusted": 0,
+      "stranger": 1,
+      "known": 1,
+      "trusted": 2,
+      "kin": 3
+    },
+    "renounce_cost": 24,
+    "disabled": []
+  },
+
+  // wild_witches_cast: hostile witches (and angry residents) channel a hex at players they
+  // fight, every cooldown_seconds (random in between), from up to cast_range blocks, landing with
+  // chance (+night_bonus at night, +full_moon_bonus under a full moon). max_hexes: how many one player
+  // can carry. resident_grudge: killing a resident always lays a hex. disabled: hex ids never laid.
+  // Ids: leaden_limbs, gnawing_hunger, black_cat, brittle_bones, withering_grip, insomnia,
+  // frail_heart, clumsy_fingers.
+  "hexes": {
+    "wild_witches_cast": true,
+    "cast_range": 16,
+    "cooldown_seconds": {
+      "min": 14,
+      "max": 26
+    },
+    "chance": 0.35,
+    "night_bonus": 0.15,
+    "full_moon_bonus": 0.25,
+    "max_hexes": 3,
+    "resident_grudge": true,
+    "disabled": []
+  },
+
+  // How Coven Standing (-100 to 100) changes. Tiers: hunted <= -50, distrusted <= -10,
+  // stranger < 20, known < 50, trusted < 80, kin. Errands give their own amounts.
+  // offering_daily_cap: the most standing offerings can give in one in-game day.
+  "standing": {
+    "kill_witch": -4,
+    "kill_resident": -40,
+    "hurt_resident": -5,
+    "break_hex_task": 3,
+    "renounce_pact": -5,
+    "abandon_errand": -2,
+    "offering_daily_cap": 6
+  },
+
+  // Emerald prices at a resident witch. lift_hex_cost per tier (hunted: refused).
+  "services": {
+    "lift_hex_cost": {
+      "distrusted": 16,
+      "stranger": 8,
+      "known": 6,
+      "trusted": 4,
+      "kin": 0
+    },
+    "witch_bottle_cost": 6,
+    "poppet_cost": 10
+  },
+
+  // Wild witches never target or harm a player of Kin standing.
+  "kin_peace": true,
+
+  // Set a hut to false to stop it generating in new chunks (ones already
+  // generated stay).
+  "structures": {
+    "witch_hut": true,
+    "bog_hut": true,
+    "mangrove_roost": true,
+    "hedge_cottage": true,
+    "nightshade_circle": true,
+    "rime_hut": true,
+    "bone_hut": true
+  }
+}
