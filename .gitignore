@@ -19,3 +19,7 @@ secrets/
 .classpath
 .project
 .factorypath
+releases/
+marketing/source/.render-*
+tools/__pycache__/
+tools/qa/__pycache__/
