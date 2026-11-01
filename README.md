@@ -23,6 +23,7 @@ loader.
 
 | Minecraft | Java | Fabric jar (needs Fabric API) | NeoForge jar |
 |-----------|------|-------------------------------|--------------|
+| 1.21.1 | 21+ | `…-fabric-1.21.1-2.0.0.jar` | `…-neoforge-1.21.1-2.0.0.jar` (NeoForge 21.1.219 or newer) |
 | 26.1.2 | 25+ | `…-fabric-26.1.2-2.0.0.jar` | `…-neoforge-26.1.2-2.0.0.jar` (NeoForge 26.1.2.7-beta or newer) |
 | 26.2 | 25+ | `…-fabric-26.2-2.0.0.jar` | `…-neoforge-26.2-2.0.0.jar` (NeoForge 26.2.0.93 or newer) |
 | 26.3 | 25+ | `…-fabric-26.3-2.0.0.jar` | `…-neoforge-26.3-2.0.0.jar` (NeoForge 26.3.0.97 or newer) |
@@ -165,8 +166,8 @@ Records live in `<world>/data/better_witch_huts/players/<uuid>.json`.
 
 ## Building
 
-Each Minecraft version is a separate MultiLoader Gradle workspace (`common/`, `fabric/` and `neoforge/`) with Java 25.
-On 26.3, Gradle itself must run on Java 25 (Loom 1.18).
+Each Minecraft version is a separate MultiLoader Gradle workspace (`common/`, `fabric/` and `neoforge/`): Java 21 for
+1.21.1, Java 25 for 26.x. On 26.3, Gradle itself must run on Java 25 (Loom 1.18).
 
 ```bash
 cd 26.2
@@ -183,8 +184,9 @@ in `patchnotes/<version>.md`.
 - [`tools/datagen.py`](tools/datagen.py): writes the assets and data (loot tables, recipes, advancements, tags,
   structures, item models, lang) into every workspace, in each version's format. Edit the tables there, not the JSON.
 - [`tools/gen_textures.py`](tools/gen_textures.py): draws the item icons and the twenty pact and hex sigils.
-- [`tools/qa/`](tools/qa): dev servers and a real game client under Xvfb (`devrun.sh`, `rcon.py`, `client.py`), and
-  `marketing_shots.py` for the listing screenshots.
+- [`tools/qa/`](tools/qa): dev servers and a real game client under Xvfb (`devrun.sh`, `rcon.py`, `client.py`),
+  `witch_checks.py` (12 in-game checks of the Coven screen, pacts, hexes, errands, offerings, the Witch Bottle, Kin
+  peace and Insomnia, with controls) and `marketing_shots.py` for the listing screenshots.
 - [`marketing/`](marketing): the CurseForge/Modrinth description, listing images and how to regenerate them.
 
 ## Links

@@ -5,8 +5,8 @@ This document records:
 - where the RPG market has room (summarised from [market-analysis.md](market-analysis.md))
 - what 2.0 changes, and why
 
-Every 2.0 claim below is implemented in all six builds:
-- Fabric and NeoForge on Minecraft 26.1.2, 26.2 and 26.3
+Every 2.0 claim below is implemented in all eight builds:
+- Fabric and NeoForge on Minecraft 1.21.1, 26.1.2, 26.2 and 26.3
 - checked in game as recorded in [QA-2.0.0.md](QA-2.0.0.md)
 
 ## 1. Audit of 1.0
@@ -54,8 +54,8 @@ the systems live.
 | Config | none | `config/better_witch_huts.json`, commented: pact slots per tier, hexing, standing rules, prices, per-hut toggles |
 | Admin | none | `/witchbound` for players; `info`, `standing`, `pact`, `hex` and `errand` subcommands for operators |
 | Dependencies | jauml (undeclared) | **none** (Fabric API on Fabric) |
-| Versions | 26.1.2, 26.2 | 26.1.2, 26.2, **26.3** (Fabric and NeoForge) |
-| Tests / QA | none | 15 JUnit tests for the rules, a dedicated server on every build, and a real client under Xvfb for the screens |
+| Versions | 26.1.2, 26.2 | **1.21.1**, 26.1.2, 26.2, **26.3** (Fabric and NeoForge) |
+| Tests / QA | none | 15 JUnit tests for the rules, a dedicated server on every version, and a real client under Xvfb running 12 scripted checks on Fabric and NeoForge (26.2 and 1.21.1) |
 
 ## 4. Name and identity
 
@@ -242,12 +242,23 @@ visited, what your tier means and where the next one starts).
 
 | Minecraft | Loaders | Java |
 |---|---|---|
+| 1.21.1 | Fabric, NeoForge | 21 |
 | 26.1.2 | Fabric, NeoForge | 25 |
 | 26.2 | Fabric, NeoForge | 25 |
 | 26.3 | Fabric, NeoForge | 25 (Gradle itself runs on 25 for Loom 1.18) |
 
-1.20.1 and 1.21.1 keep 1.0 on the listing. A port would mean rewriting the screen (the old `GuiGraphics` API), effect
-holders, saved values and the 26.x structure piece; that is roadmap item 6.
+**The 1.21.1 port** shares the 26.x code except where the API differs:
+- `ResourceLocation` instead of `Identifier`
+- `CompoundTag` save data instead of `ValueInput`/`ValueOutput`
+- `MobSpawnType`, `InteractionResultHolder` and the older tooltip method
+- `isDay`/`isNight` and the clock
+- Fisherman's Coast's 1.21.1 structure piece
+
+The Coven screen keeps its 26.x drawing calls through a small `Canvas` adapter over `GuiGraphics`. The datagen writes
+1.21.1's data format: recipe ingredients as `{"item": …}`, texture-path advancement backgrounds, no item model
+definitions, and JSON names in the hut templates (1.21.1 reads `CustomName` as JSON).
+
+1.20.1 keeps 1.0 on the listing.
 
 ## 8. Roadmap
 
@@ -259,4 +270,4 @@ holders, saved values and the 26.x structure piece; that is roadmap item 6.
 4. **Familiars:** bond a cat, frog, raven or fox for small passives that grow with your standing.
 5. **Allegiance:** generalise Coven Standing into faction reputation for villagers, illagers and piglins (market
    analysis idea 5).
-6. **1.21.1 NeoForge and Fabric**, for the Remnants modpack baseline.
+6. **1.20.1**, if there is demand (1.21.1 is done).

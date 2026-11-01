@@ -3,7 +3,7 @@
 set -euo pipefail
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
 mkdir -p "$ROOT/releases"
-for v in 26.1.2 26.2 26.3; do
+for v in 1.21.1 26.1.2 26.2 26.3; do
   [ -d "$ROOT/$v" ] || continue
   (cd "$ROOT/$v" && ./gradlew clean build --no-daemon)
   for loader in fabric neoforge; do

@@ -1,13 +1,14 @@
 # QA record: Witchbound 2.0.0
 
-Checked on 2026-11-01 against the jars built from this tree. "Client" means a real game client (Fabric 26.2 dev client
-under Xvfb with Mesa llvmpipe) on a dedicated dev server. Clicks were sent with xdotool, commands went over RCON, and
+Checked on 2026-11-01 against the jars built from this tree. "Client" means a real game dev client under Xvfb with Mesa
+llvmpipe, on a dedicated dev server. Clicks were sent with xdotool, commands went over RCON, and
 every result was read back from the server or from a screenshot.
 
 ## Builds and tests
 
 | Workspace | `./gradlew build` | JUnit (`common`) |
 |---|---|---|
+| 1.21.1 | Fabric and NeoForge jars | 15 tests, 0 failures |
 | 26.1.2 | Fabric and NeoForge jars | 15 tests, 0 failures |
 | 26.2 | Fabric and NeoForge jars | 15 tests, 0 failures |
 | 26.3 | Fabric and NeoForge jars | 15 tests, 0 failures |
@@ -27,6 +28,8 @@ The unit tests cover:
 | NeoForge 26.2 | ✓ | ✓ | Frostwife Isolde | – |
 | Fabric 26.1.2 | ✓ | ✓ | Frostwife Isolde | – |
 | Fabric 26.3 | ✓ | ✓ | Frostwife Isolde | all 8 tables rolled with `/loot insert` |
+| Fabric 1.21.1 | ✓ | all 7, at the same places as 26.x on the same seed | Frostwife Isolde, Granny Hollowell, names read from JSON | all 8 tables rolled |
+| NeoForge 1.21.1 | ✓ | ✓ | – | – |
 
 Issues found and fixed during QA:
 - **Residents showed their names as raw JSON.** The game's data fixer does not run on a modded entity, so templates now
@@ -36,7 +39,28 @@ Issues found and fixed during QA:
 - **26.3 renamed loot `functions` to `modifier` and recipe-unlock `recipe` to `recipes`.** The datagen writes the 26.3
   format for that workspace.
 
-## Client checks (Fabric 26.2)
+## Scripted client checks (`tools/qa/witch_checks.py`)
+
+12 checks, each read back from the server: summon a resident; Strike from the Coven screen (real click); the pact shows
+as a status effect; lay two hexes; accept and abandon an errand (−2); an offering of 8 spider eyes (+4); a Witch Bottle
+breaks the oldest hex; **control: a wild witch hexes or hurts a Stranger; Kin peace: the same witch neither hexes nor
+hurts a Kin player**; **control: the player can sleep without a hex; Insomnia wakes the player**.
+
+| Client | Result |
+|---|---|
+| Fabric 26.2 | 12/12 |
+| NeoForge 26.2 | 12/12 |
+| Fabric 1.21.1 | 12/12 |
+| NeoForge 1.21.1 | 12/12 |
+
+The script was fixed three times while closing these gaps. None of the failures was the mod:
+- It cleared witch loot left on the test pad: the spider eyes counted as offerings.
+- It moved each run to a fresh in-game day, so the daily offering cap starts empty.
+- It counted "hurt" against the current max health, because pacts like Undying lower it.
+
+The NeoForge and Fabric 1.21.1 passes came before the max-health change, which only removes false failures.
+
+## Exploratory client checks (Fabric 26.2)
 
 | Check | Result |
 |---|---|
@@ -58,7 +82,4 @@ Issues found and fixed during QA:
 | Grimoire right-click | ✓ read-only ledger: Pacts, Hexes, Errand, Record (visited huts counted) |
 | Hut visits | ✓ "The Old Hut" advancement on entering it |
 
-Not covered by this record:
-- the NeoForge client (its server and the shared screen code were checked)
-- Insomnia waking a sleeping player (the code calls the vanilla wake-up every five ticks)
-- Kin peace in combat (standing set to Kin, but no hostile witch was spawned afterwards)
+The 1.21.1 screen (drawn through `Canvas`) was compared with the 26.2 screen capture by capture and matches.

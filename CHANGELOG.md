@@ -8,7 +8,7 @@
 - Grimoire, Witch Bottle and Poppet; pact and hex sigils as status effects; the Coven screen.
 - Wild witches channel hexes; Kin of the Coven are left alone.
 - 25 advancements, a commented config, `/witchbound` commands.
-- Terrain-aware placement (structure type `better_witch_huts:hut`); no dependencies; Minecraft 26.3 added.
+- Terrain-aware placement (structure type `better_witch_huts:hut`); no dependencies; Minecraft 1.21.1 and 26.3 added.
 - Tools: structure, data and texture generators; QA scripts with a real client; listing artwork pipeline.
 - See [patchnotes/2.0.0.md](patchnotes/2.0.0.md).
 

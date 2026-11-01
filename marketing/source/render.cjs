@@ -10,6 +10,7 @@ const { chromium } = require('playwright');
 // (plus one row in the download table of curseforge/description.md).
 const RELEASE = { version: '2.0', name: 'Every Gift Has a Price' };
 const VERSIONS = [
+  { minecraft: '1.21.1', loaders: ['Fabric', 'NeoForge'] },
   { minecraft: '26.1.2', loaders: ['Fabric', 'NeoForge'] },
   { minecraft: '26.2', loaders: ['Fabric', 'NeoForge'] },
   { minecraft: '26.3', loaders: ['Fabric', 'NeoForge'] },

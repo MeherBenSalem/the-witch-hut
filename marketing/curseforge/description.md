@@ -7,7 +7,7 @@ seven coven huts offers **pacts**: keep the gift, pay the price, for good. Witch
 follow you past death until you break them. Your **Coven Standing** opens more pact slots and cheaper remedies, and at
 the top, safe passage among witches.
 
-Fabric and NeoForge · Minecraft 26.1.2, 26.2 and 26.3 · install on the server and clients · Fabric needs Fabric API,
+Fabric and NeoForge · Minecraft 1.21.1, 26.1.2, 26.2 and 26.3 · install on the server and clients · Fabric needs Fabric API,
 nothing else is needed
 
 **2.0 "Every Gift Has a Price"** is a full rework of *The Witch Hut*. The mod id is the same and the original hut is
@@ -29,7 +29,8 @@ Version 2.0 rebuilds the mod around three RPG systems. Changes from 1.0:
 - **Witch Bottles** and **Poppets**.
 - Wild witches **channel hexes**. Hit them mid-spell to break it.
 - A 25-advancement tab, a commented config, `/witchbound` commands.
-- Terrain-aware hut placement, a **26.3** build, and **no dependencies**. 1.0 needed an undeclared library.
+- Terrain-aware hut placement, **1.21.1** and **26.3** builds, and **no dependencies**. 1.0 needed an undeclared
+  library.
 
 ![The Seven Huts](https://raw.githubusercontent.com/MeherBenSalem/the-witch-hut/main/marketing/images/header-huts.png)
 
@@ -180,11 +181,12 @@ Pick the file that matches **both** your Minecraft version and your loader:
 
 | Minecraft | Fabric (needs Fabric API) | NeoForge |
 |---|---|---|
+| 1.21.1 | `better_witch_huts-fabric-1.21.1-2.0.0.jar` | `better_witch_huts-neoforge-1.21.1-2.0.0.jar` (NeoForge 21.1.219+) |
 | 26.1.2 | `better_witch_huts-fabric-26.1.2-2.0.0.jar` | `better_witch_huts-neoforge-26.1.2-2.0.0.jar` (NeoForge 26.1.2.7-beta+) |
 | 26.2 | `better_witch_huts-fabric-26.2-2.0.0.jar` | `better_witch_huts-neoforge-26.2-2.0.0.jar` (NeoForge 26.2.0.93+) |
 | 26.3 | `better_witch_huts-fabric-26.3-2.0.0.jar` | `better_witch_huts-neoforge-26.3-2.0.0.jar` (NeoForge 26.3.0.97+) |
 
-Java 25.
+Java 21 for 1.21.1, 25 for 26.x.
 
 ![FAQ](https://raw.githubusercontent.com/MeherBenSalem/the-witch-hut/main/marketing/images/header-faq.png)
 
@@ -199,8 +201,7 @@ when you do their task, smash a Witch Bottle or pay a resident.
 **The witches are too dangerous / not dangerous enough.** Change the hex chance, cooldown and limit in the config, or
 turn hex-casting off for wild witches entirely.
 
-**Is there a 1.21.1 version?** 2.0 is for 26.1.2, 26.2 and 26.3. 1.0 stays available for older versions. A 1.21.1
-port is on the roadmap.
+**Is there a 1.21.1 version?** Yes, for Fabric and NeoForge, with the same content as the 26.x builds.
 
 **Can I use it in my modpack?** Yes. It is Apache-2.0, has no dependencies and has commands for quest mods.
 
