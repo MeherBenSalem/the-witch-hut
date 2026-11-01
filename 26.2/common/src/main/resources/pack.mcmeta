@@ -1,6 +1,7 @@
 {
   "pack": {
-    "description": "The Witch Hut",
-    "pack_format": 64
+    "description": "Witchbound resources",
+    "min_format": 88,
+    "max_format": 121
   }
 }

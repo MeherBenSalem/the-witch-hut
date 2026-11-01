@@ -1,0 +1,30 @@
+{
+  "parent": "better_witch_huts:known",
+  "display": {
+    "icon": {
+      "id": "minecraft:amethyst_shard"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.trusted.title",
+      "fallback": "Trusted"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.trusted.description",
+      "fallback": "Reach Trusted standing with the Coven"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

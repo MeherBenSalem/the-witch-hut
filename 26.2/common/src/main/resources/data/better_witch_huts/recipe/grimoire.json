@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:book",
+    "minecraft:spider_eye",
+    "minecraft:feather",
+    "minecraft:ink_sac"
+  ],
+  "result": {
+    "id": "better_witch_huts:grimoire",
+    "count": 1
+  }
+}

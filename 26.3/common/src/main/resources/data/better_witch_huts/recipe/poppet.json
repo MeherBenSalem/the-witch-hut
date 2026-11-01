@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SWS",
+    "WAW",
+    "W W"
+  ],
+  "key": {
+    "S": "minecraft:string",
+    "W": "minecraft:wheat",
+    "A": "minecraft:amethyst_shard"
+  },
+  "result": {
+    "id": "better_witch_huts:poppet",
+    "count": 1
+  }
+}

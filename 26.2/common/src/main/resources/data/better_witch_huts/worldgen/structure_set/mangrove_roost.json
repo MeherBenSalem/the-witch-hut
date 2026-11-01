@@ -1,0 +1,18 @@
+{
+  "structures": [
+    {
+      "structure": "better_witch_huts:mangrove_roost",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 14,
+    "separation": 5,
+    "salt": 198386211,
+    "exclusion_zone": {
+      "other_set": "minecraft:villages",
+      "chunk_count": 4
+    }
+  }
+}

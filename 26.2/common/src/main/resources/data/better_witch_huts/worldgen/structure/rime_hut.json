@@ -1,0 +1,85 @@
+{
+  "type": "better_witch_huts:hut",
+  "biomes": "#better_witch_huts:has_structure/rime_hut",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "beard_thin",
+  "template": "better_witch_huts:rime_hut",
+  "config_name": "rime_hut",
+  "site": {
+    "mode": "land",
+    "max_slope": 2,
+    "y_offset": -1,
+    "max_rise": 6
+  },
+  "anchor": [
+    6,
+    8
+  ],
+  "dry": [
+    [
+      2,
+      5
+    ],
+    [
+      10,
+      5
+    ],
+    [
+      2,
+      11
+    ],
+    [
+      10,
+      11
+    ],
+    [
+      13,
+      6
+    ],
+    [
+      13,
+      13
+    ],
+    [
+      6,
+      8
+    ]
+  ],
+  "wet": [],
+  "around": [
+    [
+      18,
+      9
+    ],
+    [
+      15,
+      17
+    ],
+    [
+      7,
+      20
+    ],
+    [
+      -1,
+      17
+    ],
+    [
+      -4,
+      9
+    ],
+    [
+      -1,
+      1
+    ],
+    [
+      7,
+      -2
+    ],
+    [
+      15,
+      1
+    ]
+  ],
+  "search": 1
+}

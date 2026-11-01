@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "id": "better_witch_huts:grimoire"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.root.title",
+      "fallback": "Witchbound"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.root.description",
+      "fallback": "Every gift has a price"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "minecraft:block/mud_bricks"
+  },
+  "criteria": {
+    "tick": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "requirements": [
+    [
+      "tick"
+    ]
+  ]
+}

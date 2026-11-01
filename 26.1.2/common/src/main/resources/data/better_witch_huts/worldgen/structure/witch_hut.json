@@ -1,15 +1,85 @@
 {
-  "type": "minecraft:jigsaw",
-  "start_pool": "better_witch_huts:witch_hut",
-  "size": 1,
-  "max_distance_from_center": 64,
-  "spawn_overrides": {},
-  "step": "surface_structures",
-  "terrain_adaptation": "none",
-  "start_height": {
-    "absolute": 0
-  },
-  "project_start_to_heightmap": "WORLD_SURFACE_WG",
+  "type": "better_witch_huts:hut",
   "biomes": "#better_witch_huts:has_structure/witch_hut",
-  "use_expansion_hack": false
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "beard_thin",
+  "template": "better_witch_huts:old_hut",
+  "config_name": "witch_hut",
+  "site": {
+    "mode": "land",
+    "max_slope": 3,
+    "y_offset": -1,
+    "max_rise": 7
+  },
+  "anchor": [
+    12,
+    12
+  ],
+  "dry": [
+    [
+      3,
+      3
+    ],
+    [
+      20,
+      3
+    ],
+    [
+      3,
+      19
+    ],
+    [
+      20,
+      19
+    ],
+    [
+      12,
+      12
+    ],
+    [
+      12,
+      4
+    ],
+    [
+      12,
+      20
+    ]
+  ],
+  "wet": [],
+  "around": [
+    [
+      27,
+      12
+    ],
+    [
+      23,
+      23
+    ],
+    [
+      12,
+      27
+    ],
+    [
+      1,
+      23
+    ],
+    [
+      -3,
+      12
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      12,
+      -3
+    ],
+    [
+      23,
+      1
+    ]
+  ],
+  "search": 1
 }

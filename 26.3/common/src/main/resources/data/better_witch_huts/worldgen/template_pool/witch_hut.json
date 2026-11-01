@@ -1,0 +1,15 @@
+{
+  "name": "better_witch_huts:witch_hut",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "better_witch_huts:witch_hut",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

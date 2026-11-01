@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:glass_bottle",
+    "minecraft:iron_nugget",
+    "minecraft:iron_nugget",
+    "minecraft:sweet_berries",
+    "minecraft:redstone"
+  ],
+  "result": {
+    "id": "better_witch_huts:witch_bottle",
+    "count": 1
+  }
+}

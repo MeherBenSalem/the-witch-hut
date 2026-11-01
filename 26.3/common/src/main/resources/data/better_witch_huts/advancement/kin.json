@@ -1,0 +1,33 @@
+{
+  "parent": "better_witch_huts:trusted",
+  "display": {
+    "icon": {
+      "id": "minecraft:black_candle"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.kin.title",
+      "fallback": "Kin of the Coven"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.kin.description",
+      "fallback": "Reach Kin standing with the Coven"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ],
+  "rewards": {
+    "experience": 250
+  }
+}

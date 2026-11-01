@@ -1,0 +1,30 @@
+{
+  "parent": "better_witch_huts:hexed",
+  "display": {
+    "icon": {
+      "id": "better_witch_huts:witch_bottle"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.witch_bottle.title",
+      "fallback": "Bottled Up"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.witch_bottle.description",
+      "fallback": "Smash a Witch Bottle to break a hex"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

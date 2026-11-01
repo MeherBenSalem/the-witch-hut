@@ -1,0 +1,30 @@
+{
+  "parent": "better_witch_huts:found_hut",
+  "display": {
+    "icon": {
+      "id": "minecraft:carved_pumpkin"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.visit_witch_hut.title",
+      "fallback": "The Old Hut"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.visit_witch_hut.description",
+      "fallback": "Find the The Old Hut, home of Granny Hollowell"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

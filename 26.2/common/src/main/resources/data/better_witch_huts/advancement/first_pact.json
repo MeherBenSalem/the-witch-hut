@@ -1,0 +1,30 @@
+{
+  "parent": "better_witch_huts:root",
+  "display": {
+    "icon": {
+      "id": "minecraft:emerald"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.first_pact.title",
+      "fallback": "Every Gift Has a Price"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.first_pact.description",
+      "fallback": "Strike a pact with a resident witch"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

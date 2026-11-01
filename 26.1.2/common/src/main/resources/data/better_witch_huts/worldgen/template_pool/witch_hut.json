@@ -8,19 +8,7 @@
         "element_type": "minecraft:single_pool_element",
         "location": "better_witch_huts:witch_hut",
         "projection": "rigid",
-        "processors": {
-          "processors": [
-            {
-              "processor_type": "minecraft:block_ignore",
-              "blocks": [
-                { "Name": "minecraft:structure_block" },
-                { "Name": "minecraft:air" },
-                { "Name": "minecraft:void_air" },
-                { "Name": "minecraft:cave_air" }
-              ]
-            }
-          ]
-        }
+        "processors": "minecraft:empty"
       }
     }
   ]

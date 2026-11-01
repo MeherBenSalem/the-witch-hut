@@ -1,0 +1,30 @@
+{
+  "parent": "better_witch_huts:found_hut",
+  "display": {
+    "icon": {
+      "id": "minecraft:skeleton_skull"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.visit_bone_hut.title",
+      "fallback": "Bone Hut"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.visit_bone_hut.description",
+      "fallback": "Find the Bone Hut, home of Crone Ossia"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

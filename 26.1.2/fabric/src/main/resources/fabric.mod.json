@@ -1,27 +1,32 @@
 {
-  "schemaVersion": 1,
-  "id": "better_witch_huts",
-  "version": "${version}",
-  "name": "${mod_name}",
-  "description": "${description}",
-  "authors": [
-    "${mod_author}"
-  ],
-  "contact": {
-    "homepage": "https://github.com/MeherBenSalem/the-witch-hut",
-    "sources": "https://github.com/MeherBenSalem/the-witch-hut"
-  },
-  "license": "${license}",
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-      "tn.nightbeam.betterwitchhuts.BetterWitchHutsMod"
-    ]
-  },
-  "depends": {
-    "fabricloader": ">=${fabric_loader_version}",
-    "fabric-api": "*",
-    "minecraft": "~${minecraft_version}",
-    "java": ">=${java_version}"
-  }
+    "schemaVersion": 1,
+    "id": "better_witch_huts",
+    "version": "${version}",
+    "name": "${mod_name}",
+    "description": "${description}",
+    "authors": [
+        "${mod_author}"
+    ],
+    "contact": {
+        "homepage": "https://github.com/MeherBenSalem/the-witch-hut",
+        "sources": "https://github.com/MeherBenSalem/the-witch-hut",
+        "issues": "https://github.com/MeherBenSalem/the-witch-hut/issues"
+    },
+    "license": "${license}",
+    "icon": "logo.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "tn.nightbeam.betterwitchhuts.fabric.WitchboundFabric"
+        ],
+        "client": [
+            "tn.nightbeam.betterwitchhuts.fabric.WitchboundFabricClient"
+        ]
+    },
+    "depends": {
+        "fabricloader": ">=${fabric_loader_version}",
+        "fabric-api": "*",
+        "minecraft": "${minecraft_version}",
+        "java": ">=${java_version}"
+    }
 }

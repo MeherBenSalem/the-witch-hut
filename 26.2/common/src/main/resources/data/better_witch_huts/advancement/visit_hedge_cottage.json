@@ -1,0 +1,30 @@
+{
+  "parent": "better_witch_huts:found_hut",
+  "display": {
+    "icon": {
+      "id": "minecraft:allium"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.visit_hedge_cottage.title",
+      "fallback": "Hedge Cottage"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.visit_hedge_cottage.description",
+      "fallback": "Find the Hedge Cottage, home of Hedgewife Tansy"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

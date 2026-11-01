@@ -1,0 +1,33 @@
+{
+  "parent": "better_witch_huts:found_hut",
+  "display": {
+    "icon": {
+      "id": "minecraft:brewing_stand"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.all_huts.title",
+      "fallback": "The Seven Covens"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.all_huts.description",
+      "fallback": "Visit all seven coven huts"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ],
+  "rewards": {
+    "experience": 200
+  }
+}

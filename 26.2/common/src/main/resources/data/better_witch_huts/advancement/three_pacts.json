@@ -1,0 +1,33 @@
+{
+  "parent": "better_witch_huts:first_pact",
+  "display": {
+    "icon": {
+      "id": "minecraft:nether_star"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.three_pacts.title",
+      "fallback": "Thrice Bound"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.three_pacts.description",
+      "fallback": "Hold three pacts at once"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ],
+  "rewards": {
+    "experience": 150
+  }
+}

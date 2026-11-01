@@ -1,0 +1,33 @@
+{
+  "parent": "better_witch_huts:first_errand",
+  "display": {
+    "icon": {
+      "id": "minecraft:writable_book"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.ten_errands.title",
+      "fallback": "Familiar Face"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.ten_errands.description",
+      "fallback": "Hand in ten errands"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  }
+}

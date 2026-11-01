@@ -1,0 +1,78 @@
+{
+  "type": "better_witch_huts:hut",
+  "biomes": "#better_witch_huts:has_structure/mangrove_roost",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "beard_thin",
+  "template": "better_witch_huts:mangrove_roost",
+  "config_name": "mangrove_roost",
+  "site": {
+    "mode": "swamp",
+    "max_slope": 3,
+    "max_depth": 6,
+    "y_offset": -5,
+    "max_rise": 7
+  },
+  "anchor": [
+    7,
+    7
+  ],
+  "dry": [
+    [
+      2,
+      7
+    ],
+    [
+      12,
+      7
+    ],
+    [
+      7,
+      2
+    ],
+    [
+      7,
+      12
+    ],
+    [
+      7,
+      7
+    ]
+  ],
+  "wet": [],
+  "around": [
+    [
+      18,
+      7
+    ],
+    [
+      15,
+      15
+    ],
+    [
+      7,
+      18
+    ],
+    [
+      -1,
+      15
+    ],
+    [
+      -4,
+      7
+    ],
+    [
+      -1,
+      -1
+    ],
+    [
+      7,
+      -4
+    ],
+    [
+      15,
+      -1
+    ]
+  ],
+  "search": 1
+}

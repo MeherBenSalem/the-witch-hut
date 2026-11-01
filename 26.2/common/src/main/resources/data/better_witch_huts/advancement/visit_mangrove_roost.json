@@ -1,0 +1,30 @@
+{
+  "parent": "better_witch_huts:found_hut",
+  "display": {
+    "icon": {
+      "id": "minecraft:mangrove_propagule"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.visit_mangrove_roost.title",
+      "fallback": "Mangrove Roost"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.visit_mangrove_roost.description",
+      "fallback": "Find the Mangrove Roost, home of Auntie Silt"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

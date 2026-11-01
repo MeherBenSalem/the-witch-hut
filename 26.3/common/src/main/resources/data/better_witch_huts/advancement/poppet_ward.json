@@ -1,0 +1,30 @@
+{
+  "parent": "better_witch_huts:hexed",
+  "display": {
+    "icon": {
+      "id": "better_witch_huts:poppet"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.poppet_ward.title",
+      "fallback": "Take It Instead"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.poppet_ward.description",
+      "fallback": "Let a Poppet catch a hex meant for you"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

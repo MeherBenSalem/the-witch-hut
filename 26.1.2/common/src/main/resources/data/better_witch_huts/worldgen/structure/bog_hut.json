@@ -1,0 +1,86 @@
+{
+  "type": "better_witch_huts:hut",
+  "biomes": "#better_witch_huts:has_structure/bog_hut",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "beard_thin",
+  "template": "better_witch_huts:bog_hut",
+  "config_name": "bog_hut",
+  "site": {
+    "mode": "swamp",
+    "max_slope": 3,
+    "max_depth": 5,
+    "y_offset": -5,
+    "max_rise": 5
+  },
+  "anchor": [
+    6,
+    6
+  ],
+  "dry": [
+    [
+      2,
+      2
+    ],
+    [
+      10,
+      2
+    ],
+    [
+      2,
+      10
+    ],
+    [
+      10,
+      10
+    ],
+    [
+      6,
+      6
+    ],
+    [
+      6,
+      15
+    ],
+    [
+      13,
+      5
+    ]
+  ],
+  "wet": [],
+  "around": [
+    [
+      19,
+      8
+    ],
+    [
+      15,
+      16
+    ],
+    [
+      7,
+      20
+    ],
+    [
+      -1,
+      16
+    ],
+    [
+      -5,
+      8
+    ],
+    [
+      -1,
+      0
+    ],
+    [
+      7,
+      -4
+    ],
+    [
+      15,
+      0
+    ]
+  ],
+  "search": 1
+}
