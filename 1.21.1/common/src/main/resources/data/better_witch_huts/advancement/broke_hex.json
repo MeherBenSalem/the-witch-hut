@@ -1,0 +1,30 @@
+{
+  "parent": "better_witch_huts:hexed",
+  "display": {
+    "icon": {
+      "id": "minecraft:golden_carrot"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.broke_hex.title",
+      "fallback": "Hex Breaker"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.broke_hex.description",
+      "fallback": "Break a hex by doing its task"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

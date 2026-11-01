@@ -1,0 +1,30 @@
+{
+  "parent": "better_witch_huts:first_pact",
+  "display": {
+    "icon": {
+      "id": "minecraft:totem_of_undying"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.undying_saved.title",
+      "fallback": "Not Today"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.undying_saved.description",
+      "fallback": "Survive a killing blow by the Pact of the Undying"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}

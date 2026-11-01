@@ -1,0 +1,85 @@
+{
+  "type": "better_witch_huts:hut",
+  "biomes": "#better_witch_huts:has_structure/bone_hut",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "beard_thin",
+  "template": "better_witch_huts:bone_hut",
+  "config_name": "bone_hut",
+  "site": {
+    "mode": "land",
+    "max_slope": 2,
+    "y_offset": -1,
+    "max_rise": 7
+  },
+  "anchor": [
+    8,
+    7
+  ],
+  "dry": [
+    [
+      4,
+      3
+    ],
+    [
+      12,
+      3
+    ],
+    [
+      4,
+      11
+    ],
+    [
+      12,
+      11
+    ],
+    [
+      8,
+      7
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      14,
+      13
+    ]
+  ],
+  "wet": [],
+  "around": [
+    [
+      20,
+      8
+    ],
+    [
+      16,
+      16
+    ],
+    [
+      8,
+      20
+    ],
+    [
+      0,
+      16
+    ],
+    [
+      -4,
+      8
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      8,
+      -4
+    ],
+    [
+      16,
+      0
+    ]
+  ],
+  "search": 1
+}

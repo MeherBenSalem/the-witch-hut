@@ -4,7 +4,9 @@
   python3 tools/gen_textures.py && python3 tools/structures.py && python3 tools/datagen.py
 
 26.1.2 and 26.2 share one data format. 26.3 renamed loot "functions" to "modifier" (with "type" instead of "function")
-and recipe_unlocked's "recipe" to "recipes" (as handled in Fisherman's Coast).
+and recipe_unlocked's "recipe" to "recipes" (as handled in Fisherman's Coast). 1.21.1 writes recipe ingredients as
+{"item": id} objects, takes advancement backgrounds as texture paths, has no item model definitions (assets/<ns>/items)
+and reads an entity's CustomName as JSON text, so its templates get JSON names.
 """
 from __future__ import annotations
 
@@ -15,8 +17,9 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 TOOLS = Path(__file__).resolve().parent
 NS = 'better_witch_huts'
-VERSIONS = ['26.1.2', '26.2', '26.3']
+VERSIONS = ['1.21.1', '26.1.2', '26.2', '26.3']
 PACK = {
+    '1.21.1': {'pack_format': 34},
     '26.1.2': {'min_format': 84, 'max_format': 101},
     '26.2': {'min_format': 88, 'max_format': 121},
     '26.3': {'min_format': 88, 'max_format': 121},
@@ -242,6 +245,13 @@ LANG = {
 
 class D:
     modifier = False
+    legacy = False
+
+    @staticmethod
+    def ingredient(value):
+        if not D.legacy:
+            return value
+        return {'tag': value[1:]} if value.startswith('#') else {'item': value}
 
     @staticmethod
     def fn(kind, **fields):
@@ -281,9 +291,9 @@ class D:
         out = {'type': 'minecraft:crafting_shaped' if pattern else 'minecraft:crafting_shapeless', 'category': 'misc'}
         if pattern:
             out['pattern'] = pattern
-            out['key'] = key
+            out['key'] = {k: D.ingredient(v) for k, v in key.items()}
         else:
-            out['ingredients'] = key
+            out['ingredients'] = [D.ingredient(v) for v in key]
         out['result'] = {'id': result, 'count': count}
         return out
 
@@ -312,7 +322,7 @@ def advancements(lang):
                  'description': {'translate': f'advancements.{NS}.{name}.description', 'fallback': desc}, 'frame': frame,
                  'show_toast': not root, 'announce_to_chat': not root and frame != 'task', 'hidden': hidden}
         if root:
-            shown['background'] = 'minecraft:block/mud_bricks'
+            shown['background'] = 'minecraft:textures/block/mud_bricks.png' if D.legacy else 'minecraft:block/mud_bricks'
         return shown
 
     def granted(name, parent, item, title, desc, frame='task', hidden=False, xp=0):
@@ -360,13 +370,32 @@ def assets(res: Path, lang):
     a = res / 'assets' / NS
     for item in ITEMS:
         write(a / f'models/item/{item}.json', {'parent': 'minecraft:item/generated', 'textures': {'layer0': f'{NS}:item/{item}'}})
-        write(a / f'items/{item}.json', {'model': {'type': 'minecraft:model', 'model': f'{NS}:item/{item}'}})
+        if not D.legacy:
+            write(a / f'items/{item}.json', {'model': {'type': 'minecraft:model', 'model': f'{NS}:item/{item}'}})
     shutil.copytree(TOOLS / 'assets' / 'textures', a / 'textures')
     write(a / 'lang/en_us.json', dict(sorted(lang.items())))
 
 
+def copy_template(src: Path, dst: Path):
+    """Copies a template; on 1.21.1 a resident's plain-text name is turned into the JSON text that version reads."""
+    if not D.legacy:
+        shutil.copy(src, dst)
+        return
+    import gzip
+    from nbtlib import File, String, load
+    root = load(src)
+    for entity in root['entities']:
+        nbt = entity['nbt']
+        name = str(nbt.get('CustomName', ''))
+        if name and not name.startswith('{'):
+            nbt['CustomName'] = String(json.dumps({'text': name}, ensure_ascii=False))
+    with gzip.GzipFile(dst, 'wb', mtime=0) as out:
+        File(root).write(out, byteorder='big')
+
+
 def generate(v):
     D.modifier = v == '26.3'
+    D.legacy = v == '1.21.1'
     res = REPO / v / 'common/src/main/resources'
     for stale in (res / 'assets' / NS, res / 'data'):
         shutil.rmtree(stale, ignore_errors=True)
@@ -409,7 +438,7 @@ def generate(v):
         write(data / 'tags/worldgen/biome/has_structure' / f'{sid}.json', {'values': biomes})
         template = TEMPLATES.get(sid, sid)
         (data / 'structure').mkdir(parents=True, exist_ok=True)
-        shutil.copy(TOOLS / 'assets/structures' / f'{template}.nbt', data / 'structure' / f'{template}.nbt')
+        copy_template(TOOLS / 'assets/structures' / f'{template}.nbt', data / 'structure' / f'{template}.nbt')
     shutil.copy(TOOLS / 'assets/structures/witch_hut.nbt', data / 'structure' / 'witch_hut.nbt')
     write(data / 'tags/worldgen/structure/coven_huts.json', {'values': [f'{NS}:{s}' for s in STRUCTURES]})
     # The 1.0 jigsaw pool, kept for huts 1.0 left half-generated.

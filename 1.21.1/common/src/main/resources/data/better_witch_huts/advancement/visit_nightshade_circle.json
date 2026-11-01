@@ -1,0 +1,30 @@
+{
+  "parent": "better_witch_huts:found_hut",
+  "display": {
+    "icon": {
+      "id": "minecraft:soul_campfire"
+    },
+    "title": {
+      "translate": "advancements.better_witch_huts.visit_nightshade_circle.title",
+      "fallback": "Nightshade Circle"
+    },
+    "description": {
+      "translate": "advancements.better_witch_huts.visit_nightshade_circle.description",
+      "fallback": "Find the Nightshade Circle, home of Mother Nightshade"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "granted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "granted"
+    ]
+  ]
+}
