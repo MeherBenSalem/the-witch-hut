@@ -6,6 +6,7 @@
 | --- | --- | --- |
 | `26.1.2/` | 26.1.2 | Fabric, NeoForge |
 | `26.2/` | 26.2 | Fabric, NeoForge |
+| `26.3/` | 26.3 | Fabric, NeoForge |
 
 Security fixes may be applied selectively depending on impact and porting cost across isolated version roots.
 
