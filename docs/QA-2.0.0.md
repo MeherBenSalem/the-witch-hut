@@ -39,6 +39,23 @@ Issues found and fixed during QA:
 - **26.3 renamed loot `functions` to `modifier` and recipe-unlock `recipe` to `recipes`.** The datagen writes the 26.3
   format for that workspace.
 
+## Release jars on production servers (`tools/qa/prodserver.sh`)
+
+The eight jars in `releases/` were rebuilt from the published tree (`tools/build_release.sh`, unit tests included) and
+each one was booted on a real server: vanilla Minecraft with the loader installed by its own installer, plus Fabric API
+on Fabric. `tools/qa/prod_checks.py` then checked:
+- the mod loaded and wrote its commented config
+- no data-loading errors in the log
+- all 7 huts locatable
+- the generated Rime Hut has Frostwife Isolde (a plain name, not JSON)
+- all 8 loot tables roll
+- `/witchbound` is registered
+
+| Jar | Result |
+|---|---|
+| Fabric 1.21.1, 26.1.2, 26.2, 26.3 | 20/20 each |
+| NeoForge 1.21.1, 26.1.2, 26.2, 26.3 | 20/20 each |
+
 ## Scripted client checks (`tools/qa/witch_checks.py`)
 
 12 checks, each read back from the server: summon a resident; Strike from the Coven screen (real click); the pact shows

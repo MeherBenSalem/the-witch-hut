@@ -174,8 +174,17 @@ cd 26.2
 ./gradlew build          # jars in fabric/build/libs and neoforge/build/libs; runs the unit tests
 ```
 
-`tools/build_release.sh` builds every workspace and copies the jars into `releases/`. Release notes for a version live
-in `patchnotes/<version>.md`.
+`tools/build_release.sh` builds every workspace and copies the jars into `releases/` (committed: they are the files
+that get published). `tools/qa/prodserver.sh run <workspace> <loader>` boots a release jar on a real server and runs
+`tools/qa/prod_checks.py` against it. Release notes for a version live in `patchnotes/<version>.md`.
+
+## Publishing
+
+`.github/workflows/publish.yml` uploads `releases/*-<version>.jar` to Modrinth (`xcgCWpcP`) and CurseForge (`1393188`)
+with `patchnotes/<version>.md` as the changelog, on a `v*.*.*` tag or from the Actions tab (`workflow_dispatch`, with
+`update_listing` to also set the Modrinth title, description, summary and icon). It needs the repository secrets
+`MODRINTH_TOKEN` and `CURSEFORGE_TOKEN` (and optionally `CURSEFORGE_API_KEY`). CurseForge has no API for the project
+title, description or icon: set those by hand from `marketing/`.
 
 ## Tools
 
