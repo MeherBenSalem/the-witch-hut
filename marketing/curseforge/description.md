@@ -1,5 +1,9 @@
 ![Remnants | Witchbound 2.0](https://raw.githubusercontent.com/MeherBenSalem/the-witch-hut/main/marketing/images/banner.png)
 
+**[Discord](https://discord.gg/TJc3CxR4jK) · [The modpack](https://www.curseforge.com/minecraft/modpacks/remnants-ashen-legacy) · [Support NightBeam](https://nightbeam.dev/support) · [NightBeam Pro](https://nightbeam.dev/memberships) · [All projects](https://nightbeam.dev/projects)**
+
+> **Play it in [Remnants: Ashen Legacy](https://www.curseforge.com/minecraft/modpacks/remnants-ashen-legacy)**, NightBeam's story-driven soulslike RPG modpack. It builds Witchbound into one rule set with the rest of the Remnants series.
+
 ## Every gift has a price
 
 **Remnants | Witchbound** makes Minecraft's witches an RPG faction you earn standing with. A resident witch in each of
@@ -46,7 +50,7 @@ Version 2.0 rebuilds the mod around three RPG systems. Changes from 1.0:
 | Rime Hut | snowy taigas, snowy plains, groves | Frostwife Isolde | a half-buried log cabin with a powder-snow cauldron and an ice altar |
 | Bone Hut | badlands, deserts | Crone Ossia | terracotta and bone, a ribcage door, skulls on poles, a lava cauldron |
 
-Residents never despawn, never join raids, and fight only if you strike them or if the Coven hunts you. Every chest has
+Residents never despawn, never join raids, and fight just if you strike them or if the Coven hunts you. Every chest has
 its own loot table: potions, reagents, Witch Bottles, Grimoires and the odd Poppet.
 
 Before a hut is placed, the land is sampled. Land huts need level ground, and swamp huts need shallow water or mud. Find
@@ -58,7 +62,7 @@ all seven for **The Seven Covens** advancement, or try `/locate structure #bette
 
 - Right-click a resident witch. Each night she offers **three pacts**, chosen for you and the same until the next day.
 - **Strike** one and it is yours: its **Gift** and its **Price** are permanent.
-- Pacts survive **death and milk**. Only a resident can undo one, for 24 emeralds and a little standing.
+- Pacts survive **death and milk**. A resident, and nobody else, can undo one, for 24 emeralds and a little standing.
 - You hold **one pact** as a Stranger, **two** when Trusted and **three** as Kin.
 
 ![Choose your bargain](https://raw.githubusercontent.com/MeherBenSalem/the-witch-hut/main/marketing/images/card-pact-list.png)
@@ -160,7 +164,7 @@ Pacts and hexes also appear among your status effects as hand-drawn sigils, so y
 
 ![Your coven, your rules](https://raw.githubusercontent.com/MeherBenSalem/the-witch-hut/main/marketing/images/card-config.png)
 
-- `config/better_witch_huts.json` is written on first start, with comments. It controls:
+- `config/better_witch_huts.json` is written at startup, with comments. It controls:
   - pact slots per tier
   - hex chances, cooldowns and limits
   - every standing change
@@ -195,7 +199,7 @@ Java 21 for 1.21.1, 25 for 26.x.
 **Will my 1.0 world break?** No. The mod id and the hut's structure id are unchanged. Huts that already generated stay,
 and new chunks get the new huts.
 
-**Can I lose a pact or a hex by dying or drinking milk?** No. Pacts end only when a resident undoes them. Hexes end
+**Can I lose a pact or a hex by dying or drinking milk?** No. Pacts end just when a resident undoes them. Hexes end
 when you do their task, smash a Witch Bottle or pay a resident.
 
 **The witches are too dangerous / not dangerous enough.** Change the hex chance, cooldown and limit in the config, or
@@ -214,4 +218,14 @@ turn hex-casting off for wild witches entirely.
 
 ![divider](https://raw.githubusercontent.com/MeherBenSalem/the-witch-hut/main/marketing/images/divider.png)
 
-[Discord](https://discord.gg/SAmd9fhNhr) · [Source and issues](https://github.com/MeherBenSalem/the-witch-hut) · [Support us](https://nightbeam.dev/support) · Made by NightBeam Studio
+---
+
+### More from NightBeam Studio
+
+- **[Remnants: Ashen Legacy](https://www.curseforge.com/minecraft/modpacks/remnants-ashen-legacy)**: the story-driven soulslike RPG modpack built on NightBeam's mods
+- **[Premium server plugins](https://nightbeam.dev/store)**: anti-cheat, ranked PvP, SMP setups and more on BuiltByBit
+- **[NightBeam Pro](https://nightbeam.dev/memberships)**: the model library and NightBeam Forge credits, from $5 a month
+- **[Discord](https://discord.gg/TJc3CxR4jK)**: support, bug reports, suggestions and early looks
+- **[Support NightBeam](https://nightbeam.dev/support)**: help keep every mod free
+
+**Follow:** [YouTube](https://www.youtube.com/@nightbeamstudio) · [Instagram](https://www.instagram.com/nightbeamstudio/) · [X](https://x.com/NightBeamLLC) · [Facebook](https://www.facebook.com/profile.php?id=61574823331471) · [Source and issues](https://github.com/MeherBenSalem/the-witch-hut)
