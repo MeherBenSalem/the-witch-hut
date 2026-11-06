@@ -1,6 +1,6 @@
 ![Remnants | Witchbound 2.0](https://raw.githubusercontent.com/MeherBenSalem/the-witch-hut/main/marketing/images/banner.png)
 
-**[Discord](https://discord.gg/TJc3CxR4jK) · [Source and issues](https://github.com/MeherBenSalem/the-witch-hut)**
+**[Docs](https://nightbeam.dev/docs/witchbound) · [Discord](https://discord.gg/TJc3CxR4jK) · [Source and issues](https://github.com/MeherBenSalem/the-witch-hut)**
 
 ## Every gift has a price
 
