@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1
+
+- Minecraft 26.3: the Coven screen's tabs and buttons respond to left-click again (26.3 numbers mouse buttons
+  differently). Other versions are unchanged apart from the version number.
+- See [patchnotes/2.0.1.md](patchnotes/2.0.1.md).
+
 ## 2.0.0 "Every Gift Has a Price"
 
 - Renamed to **Witchbound** (listed as Remnants | Witchbound); same mod id `better_witch_huts`.
