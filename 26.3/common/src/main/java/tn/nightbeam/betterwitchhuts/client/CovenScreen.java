@@ -433,7 +433,7 @@ public class CovenScreen extends AbstractContainerScreen<CovenMenu> {
 
     @Override
     public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
-        if (event.button() == 0) {
+        if (MouseButtons.of(event) == MouseButtons.LEFT) {
             List<Tab> tabs = tabs();
             int tw = (W - 12) / tabs.size();
             int ty = topPos + 40;
