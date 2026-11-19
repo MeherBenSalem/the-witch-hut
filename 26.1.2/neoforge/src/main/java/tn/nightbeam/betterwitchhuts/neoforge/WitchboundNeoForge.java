@@ -101,7 +101,7 @@ public final class WitchboundNeoForge {
         });
         NeoForge.EVENT_BUS.addListener((LivingDamageEvent.Post event) -> {
             if (!event.getEntity().level().isClientSide()) {
-                Game.afterDamage(event.getEntity(), event.getSource(), event.getNewDamage());
+                Game.afterDamage(event.getEntity(), event.getSource(), event.getHealthDamage());
             }
         });
         NeoForge.EVENT_BUS.addListener(EventPriority.HIGH, (LivingDeathEvent event) -> {
