@@ -20,7 +20,8 @@ simulation-distance=4
 level-seed=20261123
 initial-enabled-packs=vanilla,file/witchbound_smoke
 PROPS
-sed 's/"description": .*/"description": "Witchbound smoke test"/' common/src/main/resources/pack.mcmeta > "$PACK/pack.mcmeta"
+FORMAT="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["pack"]["pack_format"])' common/src/main/resources/pack.mcmeta)"
+printf '{"pack":{"description":"Witchbound smoke test","pack_format":%s}}\n' "$FORMAT" > "$PACK/pack.mcmeta"
 
 STRUCTURES="$(ls common/src/main/resources/data/better_witch_huts/worldgen/structure/ | sed 's/\.json$//')"
 for dir in function functions; do
