@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "tn.nightbeam.betterwitchhuts.fabric.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": ["LivingEntityMixin", "PlayerMixin"],
+  "client": ["MultiPlayerGameModeMixin"],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "${mod_id}.refmap.json"
+}

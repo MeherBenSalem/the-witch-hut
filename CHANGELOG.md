@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.2
+
+- Minecraft 1.20.1 is now supported, on Fabric and on Forge. Fabric needs Fabric API.
+- Minecraft 26.1.2 is no longer supported; it can keep using 2.0.1. Builds: 1.20.1 (Fabric, Forge), 1.21.1, 26.2 and
+  26.3 (Fabric, NeoForge).
+- 1.21.1, 26.2 and 26.3 are unchanged apart from the version number.
+- See [patchnotes/2.0.2.md](patchnotes/2.0.2.md).
+
 ## 2.0.1
 
 - Minecraft 26.3: the Coven screen's tabs and buttons respond to left-click again (26.3 numbers mouse buttons

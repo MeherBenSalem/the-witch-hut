@@ -10,12 +10,12 @@ const { chromium } = require('playwright');
 // (plus one row in the download table of curseforge/description.md).
 const RELEASE = { version: '2.0', name: 'Every Gift Has a Price' };
 const VERSIONS = [
+  { minecraft: '1.20.1', loaders: ['Fabric', 'Forge'] },
   { minecraft: '1.21.1', loaders: ['Fabric', 'NeoForge'] },
-  { minecraft: '26.1.2', loaders: ['Fabric', 'NeoForge'] },
   { minecraft: '26.2', loaders: ['Fabric', 'NeoForge'] },
   { minecraft: '26.3', loaders: ['Fabric', 'NeoForge'] },
 ];
-const LOADERS = ['Fabric', 'NeoForge'].filter((loader) => VERSIONS.some((v) => v.loaders.includes(loader)));
+const LOADERS = ['Fabric', 'Forge', 'NeoForge'].filter((loader) => VERSIONS.some((v) => v.loaders.includes(loader)));
 
 // A coven by candlelight: night and aubergine, candle gold, witch-green gifts and blood-red prices.
 const C = {

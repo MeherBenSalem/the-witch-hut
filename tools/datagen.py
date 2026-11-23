@@ -3,10 +3,11 @@
 
   python3 tools/gen_textures.py && python3 tools/structures.py && python3 tools/datagen.py
 
-26.1.2 and 26.2 share one data format. 26.3 renamed loot "functions" to "modifier" (with "type" instead of "function")
-and recipe_unlocked's "recipe" to "recipes" (as handled in Fisherman's Coast). 1.21.1 writes recipe ingredients as
-{"item": id} objects, takes advancement backgrounds as texture paths, has no item model definitions (assets/<ns>/items)
-and reads an entity's CustomName as JSON text, so its templates get JSON names.
+26.3 renamed loot "functions" to "modifier" (with "type" instead of "function") and recipe_unlocked's "recipe" to
+"recipes" (as handled in Fisherman's Coast). 1.21.1 writes recipe ingredients as {"item": id} objects, takes advancement
+backgrounds as texture paths, has no item model definitions (assets/<ns>/items) and reads an entity's CustomName as JSON
+text, so its templates get JSON names. 1.20.1 does all of that too, and also uses plural folders (loot_tables, recipes,
+advancements, structures), {"item": id} recipe results and advancement icons, and a list of ids in inventory_changed.
 """
 from __future__ import annotations
 
@@ -17,10 +18,10 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 TOOLS = Path(__file__).resolve().parent
 NS = 'better_witch_huts'
-VERSIONS = ['1.21.1', '26.1.2', '26.2', '26.3']
+VERSIONS = ['1.20.1', '1.21.1', '26.2', '26.3']
 PACK = {
+    '1.20.1': {'pack_format': 15},
     '1.21.1': {'pack_format': 34},
-    '26.1.2': {'min_format': 84, 'max_format': 101},
     '26.2': {'min_format': 88, 'max_format': 121},
     '26.3': {'min_format': 88, 'max_format': 121},
 }
@@ -246,6 +247,12 @@ LANG = {
 class D:
     modifier = False
     legacy = False
+    old = False  # 1.20.1
+
+    @staticmethod
+    def folder(kind):
+        plural = {'loot_table': 'loot_tables', 'recipe': 'recipes', 'advancement': 'advancements', 'structure': 'structures'}
+        return plural.get(kind, kind) if D.old else kind
 
     @staticmethod
     def ingredient(value):
@@ -294,13 +301,14 @@ class D:
             out['key'] = {k: D.ingredient(v) for k, v in key.items()}
         else:
             out['ingredients'] = [D.ingredient(v) for v in key]
-        out['result'] = {'id': result, 'count': count}
+        out['result'] = {('item' if D.old else 'id'): result, 'count': count}
         return out
 
     @staticmethod
     def unlock(recipe_id, item):
         return {'parent': 'minecraft:recipes/root',
-                'criteria': {'has_item': {'trigger': 'minecraft:inventory_changed', 'conditions': {'items': [{'items': item}]}},
+                'criteria': {'has_item': {'trigger': 'minecraft:inventory_changed',
+                                          'conditions': {'items': [{'items': [item] if D.old else item}]}},
                              'has_the_recipe': {'trigger': 'minecraft:recipe_unlocked',
                                                 'conditions': {('recipes' if D.modifier else 'recipe'): recipe_id}}},
                 'requirements': [['has_item', 'has_the_recipe']], 'rewards': {'recipes': [recipe_id]}}
@@ -318,7 +326,7 @@ def advancements(lang):
         lang[f'advancements.{NS}.{name}.title'] = title
         lang[f'advancements.{NS}.{name}.description'] = desc
         item = item if ':' in item else 'minecraft:' + item
-        shown = {'icon': {'id': item}, 'title': {'translate': f'advancements.{NS}.{name}.title', 'fallback': title},
+        shown = {'icon': {('item' if D.old else 'id'): item}, 'title': {'translate': f'advancements.{NS}.{name}.title', 'fallback': title},
                  'description': {'translate': f'advancements.{NS}.{name}.description', 'fallback': desc}, 'frame': frame,
                  'show_toast': not root, 'announce_to_chat': not root and frame != 'task', 'hidden': hidden}
         if root:
@@ -377,7 +385,7 @@ def assets(res: Path, lang):
 
 
 def copy_template(src: Path, dst: Path):
-    """Copies a template; on 1.21.1 a resident's plain-text name is turned into the JSON text that version reads."""
+    """Copies a template; on 1.20.1 and 1.21.1 a resident's plain-text name is turned into the JSON text that version reads."""
     if not D.legacy:
         shutil.copy(src, dst)
         return
@@ -395,7 +403,8 @@ def copy_template(src: Path, dst: Path):
 
 def generate(v):
     D.modifier = v == '26.3'
-    D.legacy = v == '1.21.1'
+    D.legacy = v in ('1.20.1', '1.21.1')
+    D.old = v == '1.20.1'
     res = REPO / v / 'common/src/main/resources'
     for stale in (res / 'assets' / NS, res / 'data'):
         shutil.rmtree(stale, ignore_errors=True)
@@ -419,14 +428,14 @@ def generate(v):
         lang[f'tier.{NS}.{tid}'] = name
         lang[f'gui.{NS}.tier_desc.{tid}'] = desc
     for name, pools in LOOT.items():
-        write(data / 'loot_table' / f'{name}.json',
+        write(data / D.folder('loot_table') / f'{name}.json',
               {'type': 'minecraft:chest', 'random_sequence': f'{NS}:{name}', 'pools': [D.pool(r, [D.item(x) for x in entries])
                                                                                    for r, entries in pools]})
     for name, adv in advancements(lang).items():
-        write(data / 'advancement' / f'{name}.json', adv)
+        write(data / D.folder('advancement') / f'{name}.json', adv)
     for rid, (pattern, key, result, count, item) in RECIPES.items():
-        write(data / 'recipe' / f'{rid}.json', D.recipe(pattern, key, result, count))
-        write(data / 'advancement/recipes/misc' / f'{rid}.json', D.unlock(f'{NS}:{rid}', item))
+        write(data / D.folder('recipe') / f'{rid}.json', D.recipe(pattern, key, result, count))
+        write(data / D.folder('advancement') / 'recipes/misc' / f'{rid}.json', D.unlock(f'{NS}:{rid}', item))
     meta = json.loads((TOOLS / 'assets/structures/sites.json').read_text())
     for sid, (name, resident, biomes, spacing, separation, salt, _icon) in STRUCTURES.items():
         lang[f'structure.{NS}.{sid}'] = name
@@ -437,9 +446,9 @@ def generate(v):
                           'exclusion_zone': {'other_set': 'minecraft:villages', 'chunk_count': VILLAGE_CLEARANCE}}})
         write(data / 'tags/worldgen/biome/has_structure' / f'{sid}.json', {'values': biomes})
         template = TEMPLATES.get(sid, sid)
-        (data / 'structure').mkdir(parents=True, exist_ok=True)
-        copy_template(TOOLS / 'assets/structures' / f'{template}.nbt', data / 'structure' / f'{template}.nbt')
-    shutil.copy(TOOLS / 'assets/structures/witch_hut.nbt', data / 'structure' / 'witch_hut.nbt')
+        (data / D.folder('structure')).mkdir(parents=True, exist_ok=True)
+        copy_template(TOOLS / 'assets/structures' / f'{template}.nbt', data / D.folder('structure') / f'{template}.nbt')
+    shutil.copy(TOOLS / 'assets/structures/witch_hut.nbt', data / D.folder('structure') / 'witch_hut.nbt')
     write(data / 'tags/worldgen/structure/coven_huts.json', {'values': [f'{NS}:{s}' for s in STRUCTURES]})
     # The 1.0 jigsaw pool, kept for huts 1.0 left half-generated.
     write(data / 'worldgen/template_pool/witch_hut.json', {

@@ -17,11 +17,15 @@ Thanks for contributing to Witchbound.
 3. Generated content comes from `tools/`: edit `structures.py`, `datagen.py` or `gen_textures.py` and run
    `python3 tools/gen_textures.py && python3 tools/structures.py && python3 tools/datagen.py` (needs `nbtlib` and
    Pillow). Do not hand-edit the generated JSON or NBT in the workspaces.
-4. Java changes go into every version root (`1.21.1/`, `26.1.2/`, `26.2/`, `26.3/`); the roots differ only where the
-   Minecraft API does (see `docs/DESIGN-2.0.md`). On 1.21.1 the Coven screen draws through `client/Canvas`, which
-   keeps the 26.x drawing calls.
-5. Build the version roots you changed from inside each folder (`./gradlew build`; the unit tests run with it). Java
-   21 for 1.21.1, 25 for 26.x; on 26.3, run Gradle itself on Java 25.
+4. Java changes go into every version root (`1.20.1/`, `1.21.1/`, `26.2/`, `26.3/`); the roots differ only where the
+   Minecraft API does (see `docs/DESIGN-2.0.md`). On 1.20.1 and 1.21.1 the Coven screen draws through
+   `client/Canvas`, which keeps the 26.x drawing calls. 1.20.1 has `fabric/` and `forge/` (the other roots have
+   `fabric/` and `neoforge/`), and it lacks several player attributes, so `game/LegacyAttributes` does their work
+   there by hand.
+5. Build the version roots you changed from inside each folder (`./gradlew build`; the unit tests run with it):
+   Gradle on Java 21 for 1.20.1 (Java 17 toolchain) and 1.21.1, on Java 25 for 26.x. Or build all four from the root
+   with `./gradlew buildAll` (the 8 loader jars land in `releases/`). Keep every `version=` the same as `VERSION`
+   (`./gradlew syncVersion -PmodVersion=x.y.z`; `python3 scripts/check_targets.py workspaces` checks it).
 6. Open a pull request with a clear summary and verification notes.
 
 ## Testing in game
@@ -35,7 +39,7 @@ checks. `docs/QA-2.0.0.md` lists what was checked for the last release.
 - Follow the existing patterns in the targeted version root. Version folders are intentionally isolated.
 - Keep game rules Minecraft-free in `core/` where possible, with unit tests in `common/src/test`.
 - Do not share Java sources across versions with symlinks.
-- Do not commit jars, logs, run directories, secrets, or local IDE files.
+- Do not commit jars (other than the release jars in `releases/`), logs, run directories, secrets, or local IDE files.
 
 ## Reporting issues
 

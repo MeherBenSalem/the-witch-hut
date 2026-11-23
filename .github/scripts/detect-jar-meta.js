@@ -9,7 +9,7 @@
  * Legacy convention:
  *   better_witch_huts-{modVersion}-{loader}-{mcVersion}.jar
  *
- * Minecraft versions may be classic (1.21.1) or calendar-style (26.1.2, 26.2, 26.3).
+ * Minecraft versions may be classic (1.21.1) or calendar-style (26.2, 26.3, or with a patch number such as 26.3.1).
  */
 
 const path = require('path');

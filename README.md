@@ -10,7 +10,7 @@ A witchcraft RPG for Minecraft, formerly **The Witch Hut**. Its systems:
 
 Listed as **Remnants | Witchbound**.
 
-**2.0 "Every Gift Has a Price"** rebuilds the mod. See:
+**2.0 "Every Gift Has a Price"** rebuilds the mod; 2.0.2 adds Minecraft 1.20.1 ([notes](patchnotes/2.0.2.md)). See:
 - the [2.0.0 notes](patchnotes/2.0.0.md)
 - the [design notes](docs/DESIGN-2.0.md)
 - the [market analysis](docs/market-analysis.md), which covers why this mod and which RPG mods don't exist yet
@@ -21,12 +21,12 @@ Listed as **Remnants | Witchbound**.
 Jar names are `better_witch_huts-{loader}-{minecraft}-{modVersion}.jar`. Match **both** the Minecraft version and the
 loader.
 
-| Minecraft | Java | Fabric jar (needs Fabric API) | NeoForge jar |
-|-----------|------|-------------------------------|--------------|
-| 1.21.1 | 21+ | `…-fabric-1.21.1-2.0.0.jar` | `…-neoforge-1.21.1-2.0.0.jar` (NeoForge 21.1.219 or newer) |
-| 26.1.2 | 25+ | `…-fabric-26.1.2-2.0.0.jar` | `…-neoforge-26.1.2-2.0.0.jar` (NeoForge 26.1.2.7-beta or newer) |
-| 26.2 | 25+ | `…-fabric-26.2-2.0.0.jar` | `…-neoforge-26.2-2.0.0.jar` (NeoForge 26.2.0.93 or newer) |
-| 26.3 | 25+ | `…-fabric-26.3-2.0.0.jar` | `…-neoforge-26.3-2.0.0.jar` (NeoForge 26.3.0.97 or newer) |
+| Minecraft | Java | Fabric jar (needs Fabric API) | Forge / NeoForge jar |
+|-----------|------|-------------------------------|----------------------|
+| 1.20.1 | 17+ | `…-fabric-1.20.1-2.0.2.jar` | `…-forge-1.20.1-2.0.2.jar` (Forge 47.2.30 or newer) |
+| 1.21.1 | 21+ | `…-fabric-1.21.1-2.0.2.jar` | `…-neoforge-1.21.1-2.0.2.jar` (NeoForge 21.1.219 or newer) |
+| 26.2 | 25+ | `…-fabric-26.2-2.0.2.jar` | `…-neoforge-26.2-2.0.2.jar` (NeoForge 26.2.0.93 or newer) |
+| 26.3 | 25+ | `…-fabric-26.3-2.0.2.jar` | `…-neoforge-26.3-2.0.2.jar` (NeoForge 26.3.0.97 or newer) |
 
 Install it on the server and on clients. No other library is needed (1.0 required an undeclared one; 2.0 does not).
 
@@ -139,6 +139,8 @@ A "Witchbound" tab with 25 advancements:
 | Hut loot | `loot_table/chests/<id>.json`, `chests/hut_storage.json` |
 | Recipes | `recipe/{grimoire,witch_bottle,poppet}.json` |
 
+On 1.20.1 those two folders are plural: `loot_tables/` and `recipes/`.
+
 `/locate structure better_witch_huts:<id>` finds one hut, and `/locate structure #better_witch_huts:coven_huts` finds
 any of them.
 
@@ -166,32 +168,53 @@ Records live in `<world>/data/better_witch_huts/players/<uuid>.json`.
 
 ## Building
 
-Each Minecraft version is a separate MultiLoader Gradle workspace (`common/`, `fabric/` and `neoforge/`): Java 21 for
-1.21.1, Java 25 for 26.x. On 26.3, Gradle itself must run on Java 25 (Loom 1.18).
+Each Minecraft version is a separate MultiLoader Gradle workspace with its own wrapper. These are the only supported
+targets (the NightBeam convention): 8 jars per release, all with the same version.
+
+| Minecraft | Loaders | Java | Folder |
+| --- | --- | --- | --- |
+| 1.20.1 | Forge, Fabric | 17 bytecode (build on 21) | `1.20.1/{common,forge,fabric}` |
+| 1.21.1 | NeoForge, Fabric | 21 | `1.21.1/{common,neoforge,fabric}` |
+| 26.2 | NeoForge, Fabric | 25 | `26.2/{common,neoforge,fabric}` |
+| 26.3 | NeoForge, Fabric | 25 | `26.3/{common,neoforge,fabric}` |
 
 ```bash
-cd 26.2
-./gradlew build          # jars in fabric/build/libs and neoforge/build/libs; runs the unit tests
+./gradlew buildAll             # every workspace, then the 8 loader jars into releases/
+cd 1.20.1 && ./gradlew build   # Gradle on Java 21 (Java 17 toolchain)
+cd 1.21.1 && ./gradlew build   # Java 21
+cd 26.3 && ./gradlew build     # Java 25 (the same for 26.2; Loom 1.18 needs Gradle itself on 25)
 ```
 
-`tools/build_release.sh` builds every workspace and copies the jars into `releases/` (committed: they are the files
-that get published). `tools/qa/prodserver.sh run <workspace> <loader>` boots a release jar on a real server and runs
-`tools/qa/prod_checks.py` against it. Release notes for a version live in `patchnotes/<version>.md`.
+The root build hands the 26.x workspaces `JAVA_HOME_25_X64` (or `-Pjava25Home=<jdk>`) and the others
+`JAVA_HOME_21_X64` (or `-Pjava21Home=<jdk>`); without them each workspace uses the current `JAVA_HOME`.
+Jars land in `<workspace>/<loader>/build/libs/better_witch_huts-<loader>-<minecraft>-<version>.jar`, and `build`
+runs the unit tests. The root `VERSION` file and every workspace's `gradle.properties` carry the same version
+(`./gradlew checkVersions`; set them all with `./gradlew syncVersion -PmodVersion=x.y.z`).
+`python3 scripts/check_targets.py workspaces` checks the targets, the shared version and the metadata ranges.
 
-## Publishing
+`tools/build_release.sh` does a clean build of every workspace and copies the jars into `releases/`, which keeps the
+jars of every release as history. `tools/qa/prodserver.sh run <workspace> <loader>` boots a release jar on a real
+server and runs `tools/qa/prod_checks.py` against it. Release notes for a version live in `patchnotes/<version>.md`.
 
-`.github/workflows/publish.yml` uploads `releases/*-<version>.jar` to Modrinth (`xcgCWpcP`) and CurseForge (`1393188`)
-with `patchnotes/<version>.md` as the changelog, on a `v*.*.*` tag or from the Actions tab (`workflow_dispatch`, with
-`update_listing` to also set the Modrinth title, description, summary and icon). It needs the repository secrets
-`MODRINTH_TOKEN` and `CURSEFORGE_TOKEN` (and optionally `CURSEFORGE_API_KEY`). CurseForge has no API for the project
-title, description or icon: set those by hand from `marketing/`.
+## Releasing
+
+CI (`.github/workflows/ci.yml`) builds all 8 jars on every push to `main` that touches the build, and tests the
+publisher scripts. Publishing to Modrinth (`xcgCWpcP`) and CurseForge (`1393188`) is
+`.github/workflows/publish.yml`, run by hand (`version`, `dry_run`, `platforms`, `minecraft_version`,
+`update_listing`) or by a `v*.*.*` tag; it never runs on a plain push. It refuses a second release of the mod on the
+same day (Africa/Tunis), builds the jars from source, uploads only what that build made (never older jars from
+`releases/`), and fails unless exactly the 8 jars are there. The changelog is `patchnotes/<version>.md`.
+`update_listing` also sets the Modrinth title, description, summary and icon from `marketing/modrinth/` (made from
+`marketing/curseforge/` with `python3 tools/make_modrinth_md.py .`). It needs the secrets `MODRINTH_TOKEN`,
+`CURSEFORGE_TOKEN`, `CURSEFORGE_API_KEY` and, optionally, the variables `MODRINTH_ID`, `CURSEFORGE_ID`. CurseForge has
+no API for the project title, description or icon: set those by hand from `marketing/curseforge/`.
 
 ## Tools
 
 - [`tools/structures.py`](tools/structures.py) and [`tools/nbtbuild.py`](tools/nbtbuild.py): build the seven hut
   templates (and repair the 1.0 hut) and record where each one samples the land.
 - [`tools/datagen.py`](tools/datagen.py): writes the assets and data (loot tables, recipes, advancements, tags,
-  structures, item models, lang) into every workspace, in each version's format. Edit the tables there, not the JSON.
+  structures, item models, lang) into every workspace, in each version's format (1.20.1 included). Edit the tables there, not the JSON.
 - [`tools/gen_textures.py`](tools/gen_textures.py): draws the item icons and the twenty pact and hex sigils.
 - [`tools/qa/`](tools/qa): dev servers and a real game client under Xvfb (`devrun.sh`, `rcon.py`, `client.py`),
   `witch_checks.py` (12 in-game checks of the Coven screen, pacts, hexes, errands, offerings, the Witch Bottle, Kin

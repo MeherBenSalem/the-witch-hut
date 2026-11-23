@@ -4,12 +4,13 @@
 
 | Version root | Minecraft line | Loaders |
 | --- | --- | --- |
+| `1.20.1/` | 1.20.1 | Fabric, Forge |
 | `1.21.1/` | 1.21.1 | Fabric, NeoForge |
-| `26.1.2/` | 26.1.2 | Fabric, NeoForge |
 | `26.2/` | 26.2 | Fabric, NeoForge |
 | `26.3/` | 26.3 | Fabric, NeoForge |
 
-Security fixes may be applied selectively depending on impact and porting cost across isolated version roots.
+Security fixes go to the latest release (2.0.2 and later), whose 8 jars cover exactly these targets. Older releases do
+not receive backports. Fixes may be applied selectively depending on impact and porting cost across isolated version roots.
 
 ## Reporting a Vulnerability
 

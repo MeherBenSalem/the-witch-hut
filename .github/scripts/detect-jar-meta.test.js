@@ -16,8 +16,8 @@ const cases = [
   ['better_witch_huts-neoforge-26.3-2.0.0.jar', 'neoforge', '26.3'],
   ['releases/better_witch_huts-neoforge-26.3-2.0.0.jar', 'neoforge', '26.3'],
   // Calendar versions with a patch number
-  ['better_witch_huts-fabric-26.1.2-2.0.0.jar', 'fabric', '26.1.2'],
-  ['better_witch_huts-neoforge-26.1.2-2.0.0.jar', 'neoforge', '26.1.2'],
+  ['better_witch_huts-fabric-26.3.1-2.0.0.jar', 'fabric', '26.3.1'],
+  ['better_witch_huts-neoforge-26.3.1-2.0.0.jar', 'neoforge', '26.3.1'],
   // Older names (mod version first)
   ['better_witch_huts-1.2.0-forge-1.20.1.jar', 'forge', '1.20.1'],
   ['better_witch_huts-1.2.0-neoforge-1.21.1.jar', 'neoforge', '1.21.1'],
