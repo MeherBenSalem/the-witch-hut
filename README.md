@@ -199,14 +199,12 @@ server and runs `tools/qa/prod_checks.py` against it. Release notes for a versio
 ## Releasing
 
 CI (`.github/workflows/ci.yml`) builds all 8 jars on every push to `main` that touches the build, and tests the
-publisher scripts. Publishing to Modrinth (`xcgCWpcP`) and CurseForge (`1393188`) is
-`.github/workflows/publish.yml`, run by hand (`version`, `dry_run`, `platforms`, `minecraft_version`,
-`update_listing`) or by a `v*.*.*` tag; it never runs on a plain push. It refuses a second release of the mod on the
-same day (Africa/Tunis), builds the jars from source, uploads only what that build made (never older jars from
+publisher scripts. Publishing (to CurseForge only, project `1393188`) is
+`.github/workflows/publish.yml`, run by hand (`version`, `dry_run`, `minecraft_version`) or by a `v*.*.*` tag; it
+never runs on a plain push. It refuses a second release of the mod on the same day (Africa/Tunis), builds the jars from source, uploads only what that build made (never older jars from
 `releases/`), and fails unless exactly the 8 jars are there. The changelog is `patchnotes/<version>.md`.
-`update_listing` also sets the Modrinth title, description, summary and icon from `marketing/modrinth/` (made from
-`marketing/curseforge/` with `python3 tools/make_modrinth_md.py .`). It needs the secrets `MODRINTH_TOKEN`,
-`CURSEFORGE_TOKEN`, `CURSEFORGE_API_KEY` and, optionally, the variables `MODRINTH_ID`, `CURSEFORGE_ID`. CurseForge has
+It needs the secrets `CURSEFORGE_TOKEN` (upload) and `CURSEFORGE_API_KEY` (Core API, for the same-day guard) and,
+optionally, the variable `CURSEFORGE_ID` (it falls back to `1393188`). CurseForge has
 no API for the project title, description or icon: set those by hand from `marketing/curseforge/`.
 
 ## Tools
@@ -219,7 +217,7 @@ no API for the project title, description or icon: set those by hand from `marke
 - [`tools/qa/`](tools/qa): dev servers and a real game client under Xvfb (`devrun.sh`, `rcon.py`, `client.py`),
   `witch_checks.py` (12 in-game checks of the Coven screen, pacts, hexes, errands, offerings, the Witch Bottle, Kin
   peace and Insomnia, with controls) and `marketing_shots.py` for the listing screenshots.
-- [`marketing/`](marketing): the CurseForge/Modrinth description, listing images and how to regenerate them.
+- [`marketing/`](marketing): the CurseForge description, listing images and how to regenerate them.
 
 ## Links
 
