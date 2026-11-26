@@ -26,7 +26,7 @@ loader.
 | 1.20.1 | 17+ | `…-fabric-1.20.1-2.0.2.jar` | `…-forge-1.20.1-2.0.2.jar` (Forge 47.2.30 or newer) |
 | 1.21.1 | 21+ | `…-fabric-1.21.1-2.0.2.jar` | `…-neoforge-1.21.1-2.0.2.jar` (NeoForge 21.1.219 or newer) |
 | 26.2 | 25+ | `…-fabric-26.2-2.0.2.jar` | `…-neoforge-26.2-2.0.2.jar` (NeoForge 26.2.0.93 or newer) |
-| 26.3 | 25+ | `…-fabric-26.3-2.0.2.jar` | `…-neoforge-26.3-2.0.2.jar` (NeoForge 26.3.0.97 or newer) |
+| 26.3 | 25+ | `…-fabric-26.3-2.0.2.jar` | `…-neoforge-26.3-2.0.2.jar` (NeoForge 26.3.0.100 or newer) |
 
 Install it on the server and on clients. No other library is needed (1.0 required an undeclared one; 2.0 does not).
 
